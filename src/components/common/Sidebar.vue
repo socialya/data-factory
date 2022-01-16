@@ -64,7 +64,14 @@ export default {
                 {
                     icon: 'el-icon-lx-cascades',
                     index: 'table',
-                    title: '基础表格'
+                    title: '直播测试组',
+                    subs: [
+                        {
+                            icon: 'el-icon-lx-home',
+                            index: 'projects',
+                            title: "榜单数据"
+                        }
+                    ]
                 },
                 {
                     icon: 'el-icon-lx-copy',

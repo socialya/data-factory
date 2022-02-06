@@ -22,6 +22,12 @@ const router=new Router({
                     meta: { title: '系统首页' }
                 },
                 {
+                    path: '/projects',
+                    component:() => import(/* webpackChunkName: "dashboard" */ '../components/page/Projects.vue'),
+                    meta:{title: '榜单数据'},
+                    // name:"projects"
+                },
+                {
                     path: '/icon',
                     component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
                     meta: { title: '自定义图标' }
@@ -117,35 +123,35 @@ const router=new Router({
         }
     ]
 });
-router.beforeEach((to, from, next) => {
-    const token = sessionStorage.getItem('token') || localStorage.getItem('token');
-
-    if(!token && to.path !== '/login' && to.path !== '/register'){   // 如果没有token值, 那么重定向到登录页面
-        next({
-          path: '/login',
-        });
-      }else {
-        let routerName = ['builtin_edit', 'configures_edit', 'testcases_edit', 'reports_view', 'testsuites_edit'];
-        // console.log('routerName', routerName);
-        if (routerName.includes(from.name)) {
-            let path_name = to.path.split("/")[2];
-            // console.log('path_name', path_name);
-            if (/\D/.test(path_name)) {
-                next({name: path_name});
-            }
-        }
-
-        // if (from.name === 'builtin_edit') {
-        //     console.log(to);
-        //     let path_name = to.path.split("/")[2];
-        //     console.log(path_name);
-        //     if (/\D/.test(path_name)) {
-        //         next({name: path_name});
-        //     }
-        // }
-
-        next();
-      }
-});
+// router.beforeEach((to, from, next) => {
+//     const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+//
+//     if(!token && to.path !== '/login' && to.path !== '/register'){   // 如果没有token值, 那么重定向到登录页面
+//         next({
+//           path: '/login',
+//         });
+//       }else {
+//         let routerName = ['builtin_edit', 'configures_edit', 'testcases_edit', 'reports_view', 'testsuites_edit'];
+//         // console.log('routerName', routerName);
+//         if (routerName.includes(from.name)) {
+//             let path_name = to.path.split("/")[2];
+//             // console.log('path_name', path_name);
+//             if (/\D/.test(path_name)) {
+//                 next({name: path_name});
+//             }
+//         }
+//
+//         // if (from.name === 'builtin_edit') {
+//         //     console.log(to);
+//         //     let path_name = to.path.split("/")[2];
+//         //     console.log(path_name);
+//         //     if (/\D/.test(path_name)) {
+//         //         next({name: path_name});
+//         //     }
+//         // }
+//
+//         next();
+//       }
+// });
 
 export default router;
